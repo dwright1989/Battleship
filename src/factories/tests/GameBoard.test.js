@@ -30,3 +30,15 @@ test('places a ship on the board', ()=>{
     expect(gb.board[1].hasShip).toStrictEqual(true);  
     expect(gb.board[3].hasShip).toStrictEqual(false);  
 });
+
+test('receives an attack and checks if ship has been hit',()=>{
+    const gb = new gameBoard();
+    gb.placeShip(gb.ships[4], [0,1]); // place is on the first two squares (horizontally)
+    gb.receiveAttack(0);
+    gb.receiveAttack(0); // should not be allowed to hit the same square
+    expect(gb.ships[4].hits).toStrictEqual(1);
+    gb.receiveAttack(5);
+    expect(gb.ships[4].hits).toStrictEqual(1);
+    expect(gb.missed.length).toStrictEqual(1);
+}
+);

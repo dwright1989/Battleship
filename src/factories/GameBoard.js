@@ -6,6 +6,7 @@ export default class GameBoard{
         this.board = [];
         this.ships = [];
         this.missed = [];
+        this.hits = [];
         this.initialise();
     }
 
@@ -42,6 +43,25 @@ export default class GameBoard{
             this.board[position[i]].hasShip = true;
         }
     }
+
+    /*
+    Receive an attack in a particular position and update the ship object or missed array
+    */
+   receiveAttack(coordinate){
+        for(let ship in this.ships){
+            let positions = this.ships[ship].position;
+        for(let pos in positions){
+                if(pos == coordinate){
+                    if(!this.hits.includes(coordinate)){
+                        this.ships[ship].hit();
+                        this.hits.push(coordinate);
+                    }
+                    return;                    
+                }
+            }
+        }
+        this.missed.push(coordinate);     
+   }
 
 
 }
