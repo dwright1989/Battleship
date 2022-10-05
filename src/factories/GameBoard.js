@@ -51,7 +51,7 @@ export default class GameBoard{
         for(let ship in this.ships){
             let positions = this.ships[ship].position;
         for(let pos in positions){
-                if(pos == coordinate){
+                if(positions[pos] == coordinate){
                     if(!this.hits.includes(coordinate)){
                         this.ships[ship].hit();
                         this.hits.push(coordinate);
@@ -62,6 +62,22 @@ export default class GameBoard{
         }
         this.missed.push(coordinate);     
    }
+
+   /*
+   Check if all ships are sunk
+   */
+  allShipsSunk(){
+    let shipsSunk = 0;   
+    for(let i=0; i<this.ships.length; i++){
+        if(this.ships[i].isSunk()){
+            shipsSunk++;
+        }
+    }
+    if(shipsSunk==this.ships.length){
+        return true;
+    }
+    return false;
+  }
 
 
 }
