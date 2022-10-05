@@ -5,6 +5,7 @@ export default class GameBoard{
     constructor(){
         this.board = [];
         this.ships = [];
+        this.missed = [];
         this.initialise();
     }
 
@@ -24,30 +25,22 @@ export default class GameBoard{
     }
 
     createShips(){
-        const carrier = new Ship(5,[]);
-        let battleship = new Ship(4,[]);
-        let destroyer = new Ship(3,[]);
-        let submarine = new Ship(3,[]);
-        let patrol = new Ship(2,[]);
+        let carrier = new Ship("carrier", 5,[]);
+        let battleship = new Ship("battleship", 4,[]);
+        let destroyer = new Ship("destroyer", 3,[]);
+        let submarine = new Ship("submarine", 3,[]);
+        let patrol = new Ship("patrol", 2,[]);
         this.ships = [carrier, battleship, destroyer, submarine, patrol];
     }
 
     /*
     Place a ship of a specific length in a specific position
     */
-    placeShip(pos){
-        // For each position, update the board
-        for(let i=0; i<pos.length; i++){
-            if(this.board[pos[i]].hasShip(true)){
-                console.log("ERROR. SHIP ALREADY EXISTS HERE");
-                break;
-            }else{
-                this.board[pos[i]].hasShip = true;
-            }
-            
+    placeShip(ship, position){
+        ship.setPosition(position);
+        for(let i=0; i<position.length; i++){
+            this.board[position[i]].hasShip = true;
         }
-        let ship = new Ship(pos);
-        return ship;
     }
 
 

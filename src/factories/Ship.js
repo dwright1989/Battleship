@@ -1,15 +1,21 @@
 export default class Ship{
+    name = "";
     length = 0;
     position = [];
     hits = [];
 
-    constructor(length, position){
+    constructor(name, length, position){
         this.position = position;
         this.length = length;
+        this.name = name;
     }
 
     hit(){
         this.hits++;
+    }
+
+    setPosition(pos){
+        this.position = pos;
     }
 
     /*

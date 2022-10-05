@@ -10,13 +10,23 @@ test('creates a new gameboard', () =>{
 
 test('adds ships ready to be placed', ()=>{
     const gb = new gameBoard();
-    let s1 = new Ship(5, []);
-    let s2 = new Ship(4, []);
-    let s3 = new Ship(3, []);
-    let s4 = new Ship(2, []);
+    let s1 = new Ship("carrier", 5,[]);
+    let s2 = new Ship("battleship", 4,[]);
+    let s3 = new Ship("destroyer", 3,[]);
+    let s4 = new Ship("submarine", 3,[]);
+    let s5 = new Ship("patrol", 2,[]);
     expect(gb.ships[0]).toStrictEqual(s1);  
     expect(gb.ships[1]).toStrictEqual(s2); 
     expect(gb.ships[2]).toStrictEqual(s3); 
-    expect(gb.ships[3]).toStrictEqual(s3); 
-    expect(gb.ships[4]).toStrictEqual(s4);   
+    expect(gb.ships[3]).toStrictEqual(s4); 
+    expect(gb.ships[4]).toStrictEqual(s5);   
+});
+
+test('places a ship on the board', ()=>{
+    const gb = new gameBoard();
+    let ship = gb.ships[4]; // should be patrol at length 2
+    gb.placeShip(ship, [0,1]); // place is on the first two squares (horizontally)
+    expect(gb.board[0].hasShip).toStrictEqual(true);  
+    expect(gb.board[1].hasShip).toStrictEqual(true);  
+    expect(gb.board[3].hasShip).toStrictEqual(false);  
 });
