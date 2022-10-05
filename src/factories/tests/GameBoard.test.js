@@ -49,13 +49,13 @@ test.skip('receives an attack and checks if ship has been hit',()=>{
 }
 );
 
-test('check if all the ships are sunk in a game board', ()=>{
+test.skip('check if all the ships are sunk in a game board', ()=>{
     const gb = new gameBoard();
     gb.placeShip(gb.ships[0], [1,2,3,4,5]);
     gb.placeShip(gb.ships[1], [11,21,31,41]);
     gb.placeShip(gb.ships[2], [17,27,37]);
     gb.placeShip(gb.ships[3], [67,68,69]);
-    gb.placeShip(gb.ships[4], [1,10]);
+    gb.placeShip(gb.ships[4], [0,10]);
 
     gb.receiveAttack(1);
     gb.receiveAttack(2);
@@ -64,7 +64,7 @@ test('check if all the ships are sunk in a game board', ()=>{
     expect(gb.ships[0].hits).toStrictEqual(4);
     gb.receiveAttack(5);
     expect(gb.ships[0].hits).toStrictEqual(5);
-    /*gb.receiveAttack(11);
+    gb.receiveAttack(11);
     expect(gb.allShipsSunk()).toStrictEqual(false);
     gb.receiveAttack(21);
     gb.receiveAttack(31);
@@ -76,7 +76,7 @@ test('check if all the ships are sunk in a game board', ()=>{
     expect(gb.allShipsSunk()).toStrictEqual(false);
     gb.receiveAttack(68);
     gb.receiveAttack(69);
-    gb.receiveAttack(1);
+    gb.receiveAttack(0);
     gb.receiveAttack(10);
-    expect(gb.allShipsSunk()).toStrictEqual(true);*/
+    expect(gb.allShipsSunk()).toStrictEqual(true);
 });

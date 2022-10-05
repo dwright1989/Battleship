@@ -1,4 +1,5 @@
 import Ship from './Ship';
+import Player from './Player';
 
 export default class GameBoard{
 
@@ -60,7 +61,8 @@ export default class GameBoard{
                 }
             }
         }
-        this.missed.push(coordinate);     
+        
+        this.missed.push(coordinate); 
    }
 
    /*
