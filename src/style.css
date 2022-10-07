@@ -137,6 +137,8 @@ button{
     border: 1px solid var(--colorTwo);
 }
 
+
+
 .ship{
     display: flex;
 }
@@ -173,4 +175,8 @@ button{
 #axisButton:hover{
     background-color: var(--main-color);
     color: var(--colorThree);
+}
+
+.hover{
+    background-color: red;
 }

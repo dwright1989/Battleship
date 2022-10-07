@@ -23,7 +23,8 @@ export default class Game{
     Ship that is selected to be PLACED
     */
     static setSelectedShip(ship){
-        this.selectedShip = ship.name;
+        console.log("setting the selected ship to: " + ship);
+        this.selectedShip = ship;
         UILoad.updateSelectedShipStyle(ship);
     }
 

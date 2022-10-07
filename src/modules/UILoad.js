@@ -90,6 +90,33 @@ export default class UILoad{
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
+            divSquare.addEventListener("mouseenter", function(){
+                if(Game.selectedShip!=null){
+                    console.log("Game.selectedShip.length-1: " + JSON.stringify(Game.selectedShip));
+                    // add hover effect to this square
+                    divSquare.classList.add("hover");
+                    let partnerNumber = i+1;
+                    // also add hover effect to the squares ship.length
+                    for(let j=0; j<Game.selectedShip.length-1; j++){
+                        let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                        partnerSquare.classList.add("hover");
+                        partnerNumber++;
+                    }
+                }
+            });
+            divSquare.addEventListener("mouseleave", function(){
+                if(Game.selectedShip!=null){
+                    // add hover effect to this square
+                    divSquare.classList.remove("hover");
+                    let partnerNumber = i+1;
+                    // also add hover effect to the squares ship.length
+                    for(let j=0; j<Game.selectedShip.length-1; j++){
+                        let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                        partnerSquare.classList.remove("hover");
+                        partnerNumber++;
+                    }
+                }
+            });
             gameBoardDiv.appendChild(divSquare);
         }
         return gameBoardDiv;
