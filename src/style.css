@@ -178,5 +178,6 @@ button{
 }
 
 .hover{
-    background-color: red;
+    background-color: var(--colorOne);
+    cursor:pointer;
 }

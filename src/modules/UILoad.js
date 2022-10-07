@@ -91,17 +91,22 @@ export default class UILoad{
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
             divSquare.addEventListener("mouseenter", function(){
-                if(Game.selectedShip!=null){
-                    console.log("Game.selectedShip.length-1: " + JSON.stringify(Game.selectedShip));
-                    // add hover effect to this square
-                    divSquare.classList.add("hover");
-                    let partnerNumber = i+1;
-                    // also add hover effect to the squares ship.length
-                    for(let j=0; j<Game.selectedShip.length-1; j++){
-                        let partnerSquare = document.getElementById("divSquare"+partnerNumber);
-                        partnerSquare.classList.add("hover");
-                        partnerNumber++;
+                let selectedShip = Game.selectedShip;
+                if(selectedShip!=null){
+                    let maxPlacement = 10-selectedShip.length;
+                    let currentSquare = i;
+                    if(Number(String(currentSquare).slice(-1))<=maxPlacement){
+                        // add hover effect to this square
+                         divSquare.classList.add("hover");
+                        let partnerNumber = currentSquare+1;
+                        // also add hover effect to the squares ship.length
+                        for(let j=0; j<selectedShip.length-1; j++){
+                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                            partnerSquare.classList.add("hover");
+                            partnerNumber++;
+                        }
                     }
+                    
                 }
             });
             divSquare.addEventListener("mouseleave", function(){
