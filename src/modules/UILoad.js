@@ -102,6 +102,7 @@ export default class UILoad{
         axisButton.id = "axisButton";
         axisButton.textContent = "Horizontal";
         axisButton.disabled = true;
+        axisButton.classList.add("disabled");
         shipsDiv.appendChild(axisButton);
 
         for(let i=0; i<ships.length; i++){
@@ -113,7 +114,7 @@ export default class UILoad{
             shipTitle.textContent = ships[i].name.toUpperCase();
             let ship = document.createElement("div");
             ship.classList.add("ship");
-            ship.id = "ship"+i;
+            ship.id = ships[i].name;
             for(let j=0; j<ships[i].length; j++){
                 let shipSegment = document.createElement("div");
                 shipSegment.classList.add("ship-segment");
@@ -121,8 +122,8 @@ export default class UILoad{
             }
             ship.addEventListener("click", function(){
                 Game.setSelectedShip(ships[i]);
-                console.log("the ship selected is: "  + Game.selectedShip);
                 axisButton.disabled = false;
+                axisButton.classList.remove("disabled");
             });
             shipDiv.appendChild(shipTitle);
             shipDiv.appendChild(ship);
@@ -132,6 +133,23 @@ export default class UILoad{
         return shipsDiv;
     }
 
+    static updateSelectedShipStyle(ship){
+        let ships = Game.player1.gameBoard.ships;
+        // make sure all other ships are inactive
+        ships.forEach(ship=>{
+            let shipNodes = document.getElementById(ship.name).childNodes;
+            shipNodes.forEach(shipNode=>{
+                shipNode.classList.remove("selected-ship");
+            });
+        });
+
+        // make the selected ship active
+        let shipNodes = document.getElementById(ship.name).childNodes;
+        shipNodes.forEach(shipNode=>{
+                    shipNode.classList.add("selected-ship");
+        });
+
+    }
 
 
 }

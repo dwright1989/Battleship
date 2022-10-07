@@ -6,6 +6,7 @@ export default class Game{
 
     selectedShip = null;
     shipAxis = "Horizontal";
+    player1 = null;
     
 
     static start(){
@@ -14,8 +15,8 @@ export default class Game{
 
     
     static initialisePlayer(name){
-        let player1 = new Player(name, "Human");
-        UILoad.loadShipSelectionPage(player1);        
+        this.player1 = new Player(name, "Human");
+        UILoad.loadShipSelectionPage(this.player1);        
     }
 
     /*
@@ -23,6 +24,7 @@ export default class Game{
     */
     static setSelectedShip(ship){
         this.selectedShip = ship.name;
+        UILoad.updateSelectedShipStyle(ship);
     }
 
     /*

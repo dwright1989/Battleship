@@ -53,6 +53,9 @@ button{
     cursor: pointer;
 }
 
+.disabled{
+    pointer-events: none;
+}
 
 /*INTRO PAGE*/
 
@@ -145,6 +148,14 @@ button{
     border: 1px solid var(--colorTwo);
 }
 
+.ship-segment:hover{
+    cursor: pointer;
+}
+
+.selected-ship{
+    background-color: var(--main-color);
+}
+
 .ship-title{
     font-size: 1.5vw;
     padding-bottom: 1rem;
@@ -152,8 +163,14 @@ button{
 
 #axisButton{
     font-family: 'Black Ops One', cursive;
-    font-size:1.7vw;
+    background-color: var(--colorThree);
+    font-size:1.2vw;
     width: 11vw;
-    padding-bottom: 1rem;
-    margin: auto;
+    margin-bottom: 2rem;
+    border: 1px solid var(--colorThree);
+}
+
+#axisButton:hover{
+    background-color: var(--main-color);
+    color: var(--colorThree);
 }
