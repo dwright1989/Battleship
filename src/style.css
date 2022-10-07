@@ -36,6 +36,10 @@ h1{
     margin-bottom: 0;
 }
 
+button{
+    cursor: pointer;
+}
+
 
 /*INTRO PAGE*/
 
@@ -53,6 +57,12 @@ h1{
     font-size: 1.5vw;
 }
 
+#playerNameInput:focus{
+    outline: none;
+    border-color: var(--colorTwo);
+    box-shadow: 0 0 10px var(--colorTwo);
+}
+
 #nameFormError{
     text-align: center;
     padding-bottom: 0.5rem;
@@ -61,4 +71,23 @@ h1{
 
 .error{
     color: red;
+}
+
+#startButton{
+    background-color: var(--colorTwo);
+    padding: 1rem;
+    font-size: 2vw;
+    font-family: 'Black Ops One';
+    margin-top: 2rem;
+    color: var(--main-color);
+    border: 1px solid var(--colorTwo);
+    transition-property:background-color;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    transition-delay: 0.25s;
+}
+
+#startButton:hover{
+    background-color: var(--main-color);
+    color: var(--colorThree);
 }

@@ -17,18 +17,19 @@ export default class UILoad{
         let form = document.createElement("form");
         form.id="playerNameForm";
         let nameLabel = document.createElement("label");
-        nameLabel.for = "playerNameInput";
+        nameLabel.for = "playerName";
         nameLabel.textContent = "Player Name";
 
         let nameInput = document.createElement("input");
         nameInput.type="text";
         nameInput.id="playerNameInput";
-        nameInput.name="playerNameInput";
+        nameInput.name="playerName";
 
         let submitButton = document.createElement("button");
         submitButton.type="submit";
         submitButton.value="submit";
         submitButton.textContent="Start";
+        submitButton.id="startButton";
         form.appendChild(nameLabel);
         form.appendChild(nameInput);
         form.appendChild(submitButton);
