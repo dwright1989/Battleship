@@ -83,5 +83,3 @@ export default class GameBoard{
 
 
 }
-
-module.exports = GameBoard;

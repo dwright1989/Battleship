@@ -1,5 +1,8 @@
 import _ from 'lodash';
 import './style.css';
-import UILoad from './modules/UILoad.js';
+import Game from './Game.js';
 
-UILoad.loadIntroPage();
+Game.start();
+
+
+

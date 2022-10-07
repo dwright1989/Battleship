@@ -29,11 +29,24 @@ body{
     font-size: 2.5vw;
 }
 
-h1{
+h1, h3, h5{
     text-align:center;
-    font-size: 10vw;
-    padding: 2rem;
     margin-bottom: 0;
+}
+
+h1{
+    font-size: 10vw; 
+    padding: 2rem;
+}
+
+h3{
+    font-size: 4vw; 
+    padding: 7rem 0rem 0rem 0rem;
+}
+
+h5{
+    font-size: 2vw; 
+    padding-bottom: 4rem;
 }
 
 button{
@@ -91,3 +104,49 @@ button{
     background-color: var(--main-color);
     color: var(--colorThree);
 }
+
+/*SHIP PLACEMENT PAGE*/
+
+#gridDiv{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 2rem;
+}
+
+#boardDiv{
+    display:grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    min-width: 150rem;
+    min-height: 150rem;
+    margin: auto;
+    background-color: var(--colorThree);
+    border: 1px solid var(--colorTwo);
+}
+
+#shipsDiv{
+    display: grid;
+    padding: 2rem;
+}
+
+.board-square{
+    background-color:#6495ED;
+    border: 1px solid var(--colorTwo);
+}
+
+.ship{
+    display: flex;
+}
+
+.ship-segment{
+    background-color:#00A36C;
+    min-width: 14rem;
+    min-height: 14rem;
+    border: 1px solid var(--colorTwo);
+}
+
+.ship-title{
+    font-size: 1.5vw;
+    padding-bottom: 1rem;
+}
+
