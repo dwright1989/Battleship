@@ -15,14 +15,15 @@ export default class UILoad{
         formValidationError.textContent="Errors will appear here";
 
         let form = document.createElement("form");
+        form.id="playerNameForm";
         let nameLabel = document.createElement("label");
-        nameLabel.for = "playerName";
-        nameLabel.textContent = "Player Name: ";
+        nameLabel.for = "playerNameInput";
+        nameLabel.textContent = "Player Name";
 
         let nameInput = document.createElement("input");
         nameInput.type="text";
-        nameInput.id="playerName";
-        nameInput.name="playerName";
+        nameInput.id="playerNameInput";
+        nameInput.name="playerNameInput";
 
         let submitButton = document.createElement("button");
         submitButton.type="submit";
@@ -48,9 +49,9 @@ export default class UILoad{
         if(form.playerName.value!=null && form.playerName.value.trim()!=""){
             this.loadShipSelectionPage(form.playerName.value);
         }else{
-            console.log("error");
             let errorDiv = document.getElementById("nameFormError");
             errorDiv.textContent="Name cannot be blank";
+            errorDiv.style.visibility="visible";
         }
     }
 

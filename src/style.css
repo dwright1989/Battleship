@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+/*MAIN*/
+
+
+* {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+  
+:root{
+    --main-color: 	#191970; 
+    --secondary-color: #FFFFFF;
+    --colorOne: #00A36C;
+    --colorTwo: #CCCCFF;
+    --colorThree: #6495ED;
+}
+
+body{
+    font-family: 'Black Ops One', cursive;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    font-size: 2.5vw;
+}
+
+h1{
+    text-align:center;
+    font-size: 10vw;
+    padding: 2rem;
+    margin-bottom: 0;
+}
+
+
+/*INTRO PAGE*/
+
+#playerNameForm{
+    display: grid;
+    justify-content: center;
+    margin: auto;
+    justify-items: center;
+    gap: 1rem;
+}
+
+#playerNameInput{
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+#nameFormError{
+    text-align: center;
+    padding-bottom: 0.5rem;
+    visibility: hidden;
+}
+
+.error{
+    color: red;
+}
