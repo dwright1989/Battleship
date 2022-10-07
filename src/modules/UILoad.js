@@ -98,6 +98,11 @@ export default class UILoad{
     static generateShipsDiv(ships){
         let shipsDiv = document.createElement("div");
         shipsDiv.id = "shipsDiv";
+        let axisButton = document.createElement("button");
+        axisButton.id = "axisButton";
+        axisButton.textContent = "Horizontal";
+        axisButton.disabled = true;
+        shipsDiv.appendChild(axisButton);
 
         for(let i=0; i<ships.length; i++){
             let shipDiv = document.createElement("div");
@@ -114,6 +119,11 @@ export default class UILoad{
                 shipSegment.classList.add("ship-segment");
                 ship.appendChild(shipSegment);
             }
+            ship.addEventListener("click", function(){
+                Game.setSelectedShip(ships[i]);
+                console.log("the ship selected is: "  + Game.selectedShip);
+                axisButton.disabled = false;
+            });
             shipDiv.appendChild(shipTitle);
             shipDiv.appendChild(ship);
             shipsDiv.appendChild(shipDiv);

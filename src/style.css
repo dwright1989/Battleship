@@ -90,7 +90,7 @@ button{
     background-color: var(--colorTwo);
     padding: 1rem;
     font-size: 2vw;
-    font-family: 'Black Ops One';
+    font-family: 'Black Ops One', cursive;
     margin-top: 2rem;
     color: var(--main-color);
     border: 1px solid var(--colorTwo);
@@ -150,3 +150,10 @@ button{
     padding-bottom: 1rem;
 }
 
+#axisButton{
+    font-family: 'Black Ops One', cursive;
+    font-size:1.7vw;
+    width: 11vw;
+    padding-bottom: 1rem;
+    margin: auto;
+}
