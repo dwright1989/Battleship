@@ -11,6 +11,9 @@ export default class Player{
         this.gameBoard = new GameBoard();
         this.ships = [];
         this.enemy = null;
+        if(type=="AI"){
+            this.generateRandomBoard();
+        }
     }
 
     takeShot(coordinate){
@@ -24,6 +27,18 @@ export default class Player{
 
     setEnemy(enemy){
         this.enemy = enemy;
+    }
+
+    generateRandomBoard(){
+        let theShips = this.gameBoard.ships;
+        for(let i=0; i<theShips.length; i++){
+            // generate random index between 0 and length
+            // randomly selected horizontal or vertical
+            // check can place ship here
+            // ship.setRandomPos()
+            // add to gameboard
+            // remove  ship from cloned array
+        }
     }
 
 

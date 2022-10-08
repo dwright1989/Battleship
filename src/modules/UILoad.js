@@ -167,7 +167,10 @@ export default class UILoad{
                             partnerNumber++;
                         }
                     }
-                    player.gameBoard.placeShip(Game.selectedShip, coords);
+                    let startGame = player.gameBoard.placeShip(Game.selectedShip, coords);
+                    if(startGame){
+                        UILoad.loadGamePage(player);
+                    }
                 }
             });
             gameBoardDiv.appendChild(divSquare);
@@ -256,5 +259,15 @@ export default class UILoad{
         
     }
 
+    static loadGamePage(player){
+        let shipSelectionPage = document.getElementById("shipSelectionPage");
+        shipSelectionPage.remove();
+        let content = document.getElementById("content");
+        let gamePage = document.createElement("div");
+        gamePage.id = "gamePage";
+
+        gamePage.textContent = JSON.stringify(player.gameBoard);
+        content.appendChild(gamePage);
+    }
 
 }

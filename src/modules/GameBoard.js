@@ -1,5 +1,6 @@
 import Ship from './Ship';
 import Player from './Player';
+import UILoad from './UILoad';
 
 export default class GameBoard{
 
@@ -8,6 +9,7 @@ export default class GameBoard{
         this.ships = [];
         this.missed = [];
         this.hits = [];
+        this.shipsPlaced = 0;
         this.initialise();
     }
 
@@ -79,6 +81,11 @@ export default class GameBoard{
         for(let i=0; i<position.length; i++){
             this.board[position[i]].hasShip = ship;
         }
+        this.shipsPlaced++;
+        if(this.shipsPlaced==5){
+            return true;
+        }
+
     }
 
     /*

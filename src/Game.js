@@ -7,6 +7,8 @@ export default class Game{
     selectedShip = null;
     shipAxis = "Horizontal";
     player1 = null;
+    player2 = null;
+    
     
 
     static start(){
@@ -33,6 +35,13 @@ export default class Game{
     static setShipAxis(axis){
         this.shipAxis = axis;
     }
+
+    /*
+    Generate AI Gameboard
+    */
+   static initialiseAI(){
+        this.player2 = new Player("Computer", "AI");
+   }
 
 
 }

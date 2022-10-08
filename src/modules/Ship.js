@@ -18,6 +18,11 @@ export default class Ship{
         this.position = pos;
     }
 
+    setRandomPosition(){
+        let position = [];
+        return position;
+    }
+
     isSunk(){
        if(this.hits == this.length){
             return true;
