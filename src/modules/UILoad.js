@@ -140,7 +140,6 @@ export default class UILoad{
                             Game.player1.gameBoard.board[partnerNumber].hasShip=selectedShip;
                             partnerNumber++;
                         }
-                        console.log(JSON.stringify(Game.player1.gameBoard.board));
                         Game.selectedShip = null;
                     }
                 }
@@ -173,11 +172,14 @@ export default class UILoad{
             for(let j=0; j<ships[i].length; j++){
                 let shipSegment = document.createElement("div");
                 shipSegment.classList.add("ship-segment");
+                shipSegment.addEventListener("click", function myClick(){
+                    Game.setSelectedShip(ships[i]);
+                    axisButton.disabled = false;
+                    axisButton.classList.remove("disabled");
+                });
                 ship.appendChild(shipSegment);
             }
-            ship.addEventListener("click", function(){
-                UILoad.myClick(ships[i])
-            });
+            
             shipDiv.appendChild(shipTitle);
             shipDiv.appendChild(ship);
             shipsDiv.appendChild(shipDiv);
@@ -186,7 +188,7 @@ export default class UILoad{
         return shipsDiv;
     }
 
-    static myClick(ship){
+    static myClick2(ship){
         Game.setSelectedShip(ship);
         let axisButton = document.getElementById("axisButton");
         axisButton.disabled = false;
@@ -219,9 +221,9 @@ export default class UILoad{
         // make the selected ship active
         let shipNodes = document.getElementById(ship.name).childNodes;
         shipNodes.forEach(shipNode=>{
-                    console.log("about to remove the event listener");
                     shipNode.classList.add("placed-ship");
-                    shipNode.removeEventListener("click", UILoad.myClick);
+                    shipNode.classList.remove("selected-ship");
+                    shipNode.replaceWith(shipNode.cloneNode(true));
         });
         
     }
