@@ -94,8 +94,7 @@ export default class UILoad{
             divSquare.addEventListener("mouseenter", function(){
                 if(Game.selectedShip!=null){
                     let currentSquare = i;
-                    let place = player.gameBoard.canPlaceShipHere(currentSquare, Game.selectedShip, Game.shipAxis);
-                    console.log("place: " + place);          
+                    let place = player.gameBoard.canPlaceShipHere(currentSquare, Game.selectedShip, Game.shipAxis);         
                     if(place){
                         // Code to show hover on appropriate squares
                         divSquare.classList.add("hover");
@@ -146,25 +145,29 @@ export default class UILoad{
             });
 
             divSquare.addEventListener("click", function(){
-                let selectedShip = Game.selectedShip;
-                if(selectedShip!=null){
-                    
-                    let maxPlacement = 10-selectedShip.length;
+                if(Game.selectedShip!=null && player.gameBoard.canPlaceShipHere(i, Game.selectedShip, Game.shipAxis)){
+                    let coords = [i];
                     let currentSquare = i;
-                    if(Number(String(currentSquare).slice(-1))<=maxPlacement && gameBoardData.board[i].hasShip==false){
-                        UILoad.updatePlacedShipStyle(selectedShip);
-                        let partnerNumber = i+1;
-                        Game.player1.gameBoard.board[i].hasShip=selectedShip;
-                        divSquare.classList.add("placed-ship");
-                        for(let j=0; j<selectedShip.length-1; j++){
+                    divSquare.classList.add("placed-ship");
+                    UILoad.updatePlacedShipStyle(Game.selectedShip);
+                    if(Game.shipAxis=="Vertical"){
+                        let partnerNumber = currentSquare+10;
+                        for(let j=0; j<Game.selectedShip.length-1; j++){
                             let partnerSquare = document.getElementById("divSquare"+partnerNumber);
                             partnerSquare.classList.add("placed-ship");
-                            Game.player1.gameBoard.board[partnerNumber].hasShip=selectedShip;
+                            coords.push(partnerNumber);
+                            partnerNumber+=10;
+                        }
+                    }else{
+                        let partnerNumber = currentSquare+1;
+                        for(let j=0; j<Game.selectedShip.length-1; j++){
+                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                            partnerSquare.classList.add("placed-ship");
+                            coords.push(partnerNumber);
                             partnerNumber++;
                         }
-                        Game.selectedShip = null;
                     }
-                    console.log(JSON.stringify(gameBoardData.board));
+                    player.gameBoard.placeShip(Game.selectedShip, coords);
                 }
             });
             gameBoardDiv.appendChild(divSquare);
