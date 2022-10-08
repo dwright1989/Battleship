@@ -93,19 +93,36 @@ export default class UILoad{
             divSquare.addEventListener("mouseenter", function(){
                 let selectedShip = Game.selectedShip;
                 if(selectedShip!=null){
-                    let maxPlacement = 10-selectedShip.length;
                     let currentSquare = i;
-                    if(Number(String(currentSquare).slice(-1))<=maxPlacement&&gameBoardData.board[i].hasShip==false){
-                        // add hover effect to this square
-                         divSquare.classList.add("hover");
-                        let partnerNumber = currentSquare+1;
-                        // also add hover effect to the squares ship.length
-                        for(let j=0; j<selectedShip.length-1; j++){
-                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
-                            partnerSquare.classList.add("hover");
-                            partnerNumber++;
+                    let lastDigit = Number(String(currentSquare).slice(-1));
+                    if(Game.shipAxis=="Vertical"){
+                        let maxPlacement = Number("9"+lastDigit);
+                        if((currentSquare+((selectedShip.length*10)-10))<=maxPlacement && gameBoardData.board[i].hasShip==false){
+                            // add hover effect to this square
+                             divSquare.classList.add("hover");
+                            let partnerNumber = currentSquare+10;
+                            // also add hover effect to the squares ship.length
+                            for(let j=0; j<selectedShip.length-1; j++){
+                                let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                                partnerSquare.classList.add("hover");
+                                partnerNumber+=10;
+                            }
+                        }
+                    }else{
+                        let maxPlacement = 10-selectedShip.length;
+                        if(lastDigit<=maxPlacement&&gameBoardData.board[i].hasShip==false){
+                            // add hover effect to this square
+                             divSquare.classList.add("hover");
+                            let partnerNumber = currentSquare+1;
+                            // also add hover effect to the squares ship.length
+                            for(let j=0; j<selectedShip.length-1; j++){
+                                let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                                partnerSquare.classList.add("hover");
+                                partnerNumber++;
+                            }
                         }
                     }
+                    
                     
                 }
             });
@@ -113,13 +130,24 @@ export default class UILoad{
                 if(Game.selectedShip!=null){
                     // add hover effect to this square
                     divSquare.classList.remove("hover");
-                    let partnerNumber = i+1;
-                    // also add hover effect to the squares ship.length
-                    for(let j=0; j<Game.selectedShip.length-1; j++){
-                        let partnerSquare = document.getElementById("divSquare"+partnerNumber);
-                        partnerSquare.classList.remove("hover");
-                        partnerNumber++;
+                    if(Game.shipAxis=="Vertical"){
+                        let partnerNumber = i+10;
+                        // also add hover effect to the squares ship.length
+                        for(let j=0; j<Game.selectedShip.length-1; j++){
+                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                            partnerSquare.classList.remove("hover");
+                            partnerNumber+=10;
+                        }
+                    }else{
+                        let partnerNumber = i+1;
+                        // also add hover effect to the squares ship.length
+                        for(let j=0; j<Game.selectedShip.length-1; j++){
+                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                            partnerSquare.classList.remove("hover");
+                            partnerNumber++;
+                        }
                     }
+                   
                 }
             });
 
@@ -158,6 +186,16 @@ export default class UILoad{
         axisButton.textContent = "Horizontal";
         axisButton.disabled = true;
         axisButton.classList.add("disabled");
+
+        axisButton.addEventListener("click", function(){
+            if(axisButton.textContent=="Horizontal"){
+                axisButton.textContent="Vertical";
+            }else{
+                axisButton.textContent="Horizontal"
+            }
+            Game.setShipAxis(axisButton.textContent);
+        });
+
         shipsDiv.appendChild(axisButton);
 
         for(let i=0; i<ships.length; i++){
