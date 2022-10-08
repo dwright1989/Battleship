@@ -80,7 +80,6 @@ export default class UILoad{
             shipSelectionPage.appendChild(playerName);
             shipSelectionPage.appendChild(gridDiv);
             content.appendChild(shipSelectionPage);
-            // display ships to place
     }
 
     static generateGameBoardDiv(gameBoardData){
@@ -96,7 +95,7 @@ export default class UILoad{
                 if(selectedShip!=null){
                     let maxPlacement = 10-selectedShip.length;
                     let currentSquare = i;
-                    if(Number(String(currentSquare).slice(-1))<=maxPlacement){
+                    if(Number(String(currentSquare).slice(-1))<=maxPlacement&&gameBoardData.board[i].hasShip==false){
                         // add hover effect to this square
                          divSquare.classList.add("hover");
                         let partnerNumber = currentSquare+1;
@@ -127,10 +126,11 @@ export default class UILoad{
             divSquare.addEventListener("click", function(){
                 let selectedShip = Game.selectedShip;
                 if(selectedShip!=null){
-                    UILoad.updatePlacedShipStyle(selectedShip);
+                    
                     let maxPlacement = 10-selectedShip.length;
                     let currentSquare = i;
-                    if(Number(String(currentSquare).slice(-1))<=maxPlacement){
+                    if(Number(String(currentSquare).slice(-1))<=maxPlacement && gameBoardData.board[i].hasShip==false){
+                        UILoad.updatePlacedShipStyle(selectedShip);
                         let partnerNumber = i+1;
                         Game.player1.gameBoard.board[i].hasShip=selectedShip;
                         divSquare.classList.add("placed-ship");
@@ -142,6 +142,7 @@ export default class UILoad{
                         }
                         Game.selectedShip = null;
                     }
+                    console.log(JSON.stringify(gameBoardData.board));
                 }
             });
             gameBoardDiv.appendChild(divSquare);
@@ -187,14 +188,6 @@ export default class UILoad{
 
         return shipsDiv;
     }
-
-    static myClick2(ship){
-        Game.setSelectedShip(ship);
-        let axisButton = document.getElementById("axisButton");
-        axisButton.disabled = false;
-        axisButton.classList.remove("disabled");
-    }
-    
 
     static updateSelectedShipStyle(ship){
         let ships = Game.player1.gameBoard.ships;
