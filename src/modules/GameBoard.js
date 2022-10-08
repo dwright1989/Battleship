@@ -41,7 +41,7 @@ export default class GameBoard{
     placeShip(ship, position){
         ship.setPosition(position);
         for(let i=0; i<position.length; i++){
-            this.board[position[i]].hasShip = true;
+            this.board[position[i]].hasShip != false;
         }
     }
 

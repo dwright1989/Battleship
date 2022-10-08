@@ -181,3 +181,7 @@ button{
     background-color: var(--colorOne);
     cursor:pointer;
 }
+
+.placed-ship{
+    background-color: var(--main-color);
+}

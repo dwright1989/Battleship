@@ -90,6 +90,7 @@ export default class UILoad{
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
+            divSquare.textContent = i;
             divSquare.addEventListener("mouseenter", function(){
                 let selectedShip = Game.selectedShip;
                 if(selectedShip!=null){
@@ -119,6 +120,28 @@ export default class UILoad{
                         let partnerSquare = document.getElementById("divSquare"+partnerNumber);
                         partnerSquare.classList.remove("hover");
                         partnerNumber++;
+                    }
+                }
+            });
+
+            divSquare.addEventListener("click", function(){
+                let selectedShip = Game.selectedShip;
+                if(selectedShip!=null){
+                    UILoad.updatePlacedShipStyle(selectedShip);
+                    let maxPlacement = 10-selectedShip.length;
+                    let currentSquare = i;
+                    if(Number(String(currentSquare).slice(-1))<=maxPlacement){
+                        let partnerNumber = i+1;
+                        Game.player1.gameBoard.board[i].hasShip=selectedShip;
+                        divSquare.classList.add("placed-ship");
+                        for(let j=0; j<selectedShip.length-1; j++){
+                            let partnerSquare = document.getElementById("divSquare"+partnerNumber);
+                            partnerSquare.classList.add("placed-ship");
+                            Game.player1.gameBoard.board[partnerNumber].hasShip=selectedShip;
+                            partnerNumber++;
+                        }
+                        console.log(JSON.stringify(Game.player1.gameBoard.board));
+                        Game.selectedShip = null;
                     }
                 }
             });
@@ -153,9 +176,7 @@ export default class UILoad{
                 ship.appendChild(shipSegment);
             }
             ship.addEventListener("click", function(){
-                Game.setSelectedShip(ships[i]);
-                axisButton.disabled = false;
-                axisButton.classList.remove("disabled");
+                UILoad.myClick(ships[i])
             });
             shipDiv.appendChild(shipTitle);
             shipDiv.appendChild(ship);
@@ -164,6 +185,14 @@ export default class UILoad{
 
         return shipsDiv;
     }
+
+    static myClick(ship){
+        Game.setSelectedShip(ship);
+        let axisButton = document.getElementById("axisButton");
+        axisButton.disabled = false;
+        axisButton.classList.remove("disabled");
+    }
+    
 
     static updateSelectedShipStyle(ship){
         let ships = Game.player1.gameBoard.ships;
@@ -181,6 +210,20 @@ export default class UILoad{
                     shipNode.classList.add("selected-ship");
         });
 
+    }
+
+    /*
+    This ship has been placed.  Update the style and remove event listeners
+    */
+    static updatePlacedShipStyle(ship){
+        // make the selected ship active
+        let shipNodes = document.getElementById(ship.name).childNodes;
+        shipNodes.forEach(shipNode=>{
+                    console.log("about to remove the event listener");
+                    shipNode.classList.add("placed-ship");
+                    shipNode.removeEventListener("click", UILoad.myClick);
+        });
+        
     }
 
 
