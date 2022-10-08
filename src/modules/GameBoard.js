@@ -35,13 +35,49 @@ export default class GameBoard{
         this.ships = [carrier, battleship, destroyer, submarine, patrol];
     }
 
+    canPlaceShipHere(firstSquare, ship, axis){
+        
+        if(this.board[firstSquare].hasShip==false || this.board[firstSquare].hasShip==null){
+            let lastDigit = Number(String(firstSquare).slice(-1));
+                if(axis=="Vertical"){
+                    let maxPlacement = Number("9"+lastDigit);
+                    if((firstSquare+((ship.length*10)-10))<=maxPlacement){
+                        let nextSquare = firstSquare+10;
+                        for(let i=0; i<ship.length-1; i++){
+                            if(this.board[nextSquare].hasShip!=false && this.board[nextSquare].hasShip!=null){
+                                return false;
+                            }
+                            nextSquare+=10;
+                        }
+                    }else{
+                        return false;
+                    }
+                    return true;         
+                }else{ // Horizontal
+                    let maxPlacement = 10-ship.length;
+                    if(lastDigit<=maxPlacement) {
+                        let nextSquare = firstSquare+1;
+                        for(let j=0; j<ship.length-1; j++){
+                            if(this.board[nextSquare].hasShip!=false && this.board[nextSquare].hasShip!=null){
+                                return false;
+                            }
+                            nextSquare++;
+                        }
+                    }else{
+                        return false;
+                    }
+                    return true;
+                }
+        }
+    }
+
     /*
     Place a ship of a specific length in a specific position
     */
     placeShip(ship, position){
         ship.setPosition(position);
         for(let i=0; i<position.length; i++){
-            this.board[position[i]].hasShip != false;
+            this.board[position[i]].hasShip = ship;
         }
     }
 

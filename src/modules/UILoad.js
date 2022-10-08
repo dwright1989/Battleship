@@ -1,5 +1,6 @@
 
 import Game from '../Game.js';
+import GameBoard from './GameBoard.js';
 
 export default class UILoad{
 
@@ -71,7 +72,7 @@ export default class UILoad{
 
             let gridDiv = document.createElement("div");
             gridDiv.id = "gridDiv";
-            let gameBoardDiv = UILoad.generateGameBoardDiv(player1.gameBoard);
+            let gameBoardDiv = UILoad.generateGameBoardDiv(player1);
             let shipsDiv = UILoad.generateShipsDiv(player1.gameBoard.ships);
 
             gridDiv.appendChild(gameBoardDiv);
@@ -82,49 +83,42 @@ export default class UILoad{
             content.appendChild(shipSelectionPage);
     }
 
-    static generateGameBoardDiv(gameBoardData){
+    static generateGameBoardDiv(player){
         let gameBoardDiv = document.createElement("div");
         gameBoardDiv.id = "boardDiv";
-        for(let i=0; i<gameBoardData.board.length; i++){
+        for(let i=0; i<player.gameBoard.board.length; i++){
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
             divSquare.textContent = i;
             divSquare.addEventListener("mouseenter", function(){
-                let selectedShip = Game.selectedShip;
-                if(selectedShip!=null){
+                if(Game.selectedShip!=null){
                     let currentSquare = i;
-                    let lastDigit = Number(String(currentSquare).slice(-1));
-                    if(Game.shipAxis=="Vertical"){
-                        let maxPlacement = Number("9"+lastDigit);
-                        if((currentSquare+((selectedShip.length*10)-10))<=maxPlacement && gameBoardData.board[i].hasShip==false){
-                            // add hover effect to this square
-                             divSquare.classList.add("hover");
+                    let place = player.gameBoard.canPlaceShipHere(currentSquare, Game.selectedShip, Game.shipAxis);
+                    console.log("place: " + place);          
+                    if(place){
+                        // Code to show hover on appropriate squares
+                        divSquare.classList.add("hover");
+                        if(Game.shipAxis=="Vertical"){
                             let partnerNumber = currentSquare+10;
-                            // also add hover effect to the squares ship.length
-                            for(let j=0; j<selectedShip.length-1; j++){
+                            for(let j=0; j<Game.selectedShip.length-1; j++){
                                 let partnerSquare = document.getElementById("divSquare"+partnerNumber);
                                 partnerSquare.classList.add("hover");
                                 partnerNumber+=10;
                             }
-                        }
-                    }else{
-                        let maxPlacement = 10-selectedShip.length;
-                        if(lastDigit<=maxPlacement&&gameBoardData.board[i].hasShip==false){
-                            // add hover effect to this square
-                             divSquare.classList.add("hover");
+                        }else{
                             let partnerNumber = currentSquare+1;
-                            // also add hover effect to the squares ship.length
-                            for(let j=0; j<selectedShip.length-1; j++){
+                            for(let j=0; j<Game.selectedShip.length-1; j++){
                                 let partnerSquare = document.getElementById("divSquare"+partnerNumber);
                                 partnerSquare.classList.add("hover");
                                 partnerNumber++;
                             }
                         }
+                                                
+
                     }
-                    
-                    
                 }
+            
             });
             divSquare.addEventListener("mouseleave", function(){
                 if(Game.selectedShip!=null){
