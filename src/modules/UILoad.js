@@ -72,6 +72,7 @@ export default class UILoad{
 
             let gridDiv = document.createElement("div");
             gridDiv.id = "gridDiv";
+            gridDiv.classList.add("fade-in");
             let gameBoardDiv = UILoad.generateGameBoardDiv(player1);
             let shipsDiv = UILoad.generateShipsDiv(player1.gameBoard.ships);
 
@@ -265,6 +266,7 @@ export default class UILoad{
         let content = document.getElementById("content");
         let gamePage = document.createElement("div");
         gamePage.id = "gamePage";
+        gamePage.classList.add("fade-in");
 
         gamePage.textContent = JSON.stringify(player.gameBoard);
         content.appendChild(gamePage);
