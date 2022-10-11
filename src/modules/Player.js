@@ -1,3 +1,4 @@
+import Game from "../Game";
 import GameBoard from "./GameBoard";
 
 export default class Player{
@@ -31,13 +32,25 @@ export default class Player{
 
     generateRandomBoard(){
         let theShips = this.gameBoard.ships;
+        let axisArray = ["Horizontal", "Vertical"];
         for(let i=0; i<theShips.length; i++){
-            // generate random index between 0 and length
-            // randomly selected horizontal or vertical
-            // check can place ship here
-            // ship.setRandomPos()
-            // add to gameboard
-            // remove  ship from cloned array
+            let randomAxis = Math.floor(Math.random()*2);
+            let axis = axisArray[randomAxis];
+            // get random board number
+            let place = false;
+            let randomBoardNumber = 0;
+            while(!place){
+                randomBoardNumber = Math.floor(Math.random() * (99+1));
+                place = this.gameBoard.canPlaceShipHere(randomBoardNumber, theShips[i], axis);
+            }
+            if(place){
+                // generate coordinates
+                let coords = Game.generateCoordinates(axis, randomBoardNumber, theShips[i].length);
+                theShips[i].setPosition(coords);
+                this.gameBoard.placeShip(theShips[i], coords);
+            }else{
+                console.log("ERROR!!");
+            }
         }
     }
 

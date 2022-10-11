@@ -91,7 +91,6 @@ export default class UILoad{
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
-            divSquare.textContent = i;
             divSquare.addEventListener("mouseenter", function(){
                 if(Game.selectedShip!=null){
                     let currentSquare = i;
@@ -169,6 +168,7 @@ export default class UILoad{
                         }
                     }
                     let startGame = player.gameBoard.placeShip(Game.selectedShip, coords);
+                    Game.selectedShip=null;
                     if(startGame){
                         UILoad.loadGamePage(player);
                     }
@@ -260,7 +260,8 @@ export default class UILoad{
         
     }
 
-    static loadGamePage(player){
+    static loadGamePage(){
+        Game.initialiseAI();
         let shipSelectionPage = document.getElementById("shipSelectionPage");
         shipSelectionPage.remove();
         let content = document.getElementById("content");
@@ -268,7 +269,7 @@ export default class UILoad{
         gamePage.id = "gamePage";
         gamePage.classList.add("fade-in");
 
-        gamePage.textContent = JSON.stringify(player.gameBoard);
+        gamePage.textContent = JSON.stringify(Game.player2.gameBoard);
         content.appendChild(gamePage);
     }
 

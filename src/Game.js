@@ -41,6 +41,24 @@ export default class Game{
     */
    static initialiseAI(){
         this.player2 = new Player("Computer", "AI");
+    }
+
+   static generateCoordinates(axis, pos, length){
+       let coords = [pos];
+        if(axis=="Vertical"){
+            let partnerNumber = pos+10;
+            for(let i=0; i<length-1; i++){
+                coords.push(partnerNumber);
+                partnerNumber+=10;
+            }
+        }else{
+            let partnerNumber = pos+1;
+            for(let i=0; i<length-1; i++){
+                coords.push(partnerNumber);
+                partnerNumber++;
+            }
+        }
+        return coords;
    }
 
 

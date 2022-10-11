@@ -38,7 +38,6 @@ export default class GameBoard{
     }
 
     canPlaceShipHere(firstSquare, ship, axis){
-        
         if(this.board[firstSquare].hasShip==false || this.board[firstSquare].hasShip==null){
             let lastDigit = Number(String(firstSquare).slice(-1));
                 if(axis=="Vertical"){
