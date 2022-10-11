@@ -372,6 +372,9 @@ export default class UILoad{
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
+            if(player.gameBoard.board[i].hasShip!=false){
+                divSquare.classList.add("placed-ship");
+            }
             playerBoardDiv.appendChild(divSquare);
         }
 
