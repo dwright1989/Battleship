@@ -353,6 +353,10 @@ export default class UILoad{
         playerBoardDiv.classList.add("player-board-div");
         let scoreDiv = document.createElement("div");
         scoreDiv.classList.add("score-div");
+        scoreDiv.textContent = "Ships sunk: ";
+        let nameDiv = document.createElement("p");
+        nameDiv.classList.add("name");
+        nameDiv.textContent = "Player: ";
 
         let player = "";
         if(type=="Human"){
@@ -362,6 +366,7 @@ export default class UILoad{
             player = Game.player2;
             playerGameDiv.id="player2GameDiv";
         }
+        nameDiv.textContent += player.name;
 
         for(let i=0; i<player.gameBoard.board.length; i++){
             let divSquare = document.createElement("div");
@@ -371,6 +376,7 @@ export default class UILoad{
         }
 
 
+        playerGameDiv.appendChild(nameDiv);
         playerGameDiv.appendChild(playerBoardDiv);
         playerGameDiv.appendChild(scoreDiv);
 

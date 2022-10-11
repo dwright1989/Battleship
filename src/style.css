@@ -236,6 +236,11 @@ button{
     margin: auto 0px;
 }
 
+.name{
+    text-align: center;
+    font-size: 1.4vw;
+    color: var(--colorTwo);
+}
 .game-heading{
     grid-area: 1/1/2/3;
 }
@@ -252,13 +257,23 @@ button{
     margin-top: 7rem;
 }
 
+
 .player-board-div{
     display:grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     width: 40vw;
     height: 40vw;
+    max-width: 2000px;
+    max-height: 2000px;
     margin: auto;
     background-color: var(--colorThree);
     border: 1px solid var(--colorTwo);
+}
+
+.score-div{
+    margin-top: 2rem;
+    color: var(--colorFour);
+    text-align:center;
+    font-size: 1.2vw;
 }
