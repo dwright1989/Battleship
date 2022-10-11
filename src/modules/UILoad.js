@@ -293,16 +293,17 @@ export default class UILoad{
 
         let heading = document.createElement("h3");
         heading.textContent="Battleship";
-        
+        heading.classList.add("game-heading");
+
         let keyDiv = UILoad.loadKey();
-        /*let playerBoardDiv = UILoad.loadPlayerBoard();
-        let AIBoardDiv = UILoad.loadAIBoard();*/
+        let playerBoardDiv = UILoad.loadPlayerBoard("Human");
+        let AIBoardDiv = UILoad.loadPlayerBoard("AI");
         gamePage.appendChild(heading);
         
         gamePage.appendChild(keyDiv);
-        /*gamePage.appendChild(playerBoardDiv);
+        gamePage.appendChild(playerBoardDiv);
         gamePage.appendChild(AIBoardDiv);
-        */
+        
         content.appendChild(gamePage);
     }
 
@@ -340,6 +341,40 @@ export default class UILoad{
         keyDiv.appendChild(missSquare);
         keyDiv.appendChild(missText);
         return keyDiv;
+    }
+
+    /*
+    Load player or AI board depending on type passed
+    */
+    static loadPlayerBoard(type){
+        let playerGameDiv = document.createElement("div");
+        playerGameDiv.classList.add("player-game-div");
+        let playerBoardDiv = document.createElement("div");
+        playerBoardDiv.classList.add("player-board-div");
+        let scoreDiv = document.createElement("div");
+        scoreDiv.classList.add("score-div");
+
+        let player = "";
+        if(type=="Human"){
+            player = Game.player1;
+            playerGameDiv.id="player1GameDiv";
+        }else{
+            player = Game.player2;
+            playerGameDiv.id="player2GameDiv";
+        }
+
+        for(let i=0; i<player.gameBoard.board.length; i++){
+            let divSquare = document.createElement("div");
+            divSquare.classList.add("board-square");
+            divSquare.id="divSquare"+i;
+            playerBoardDiv.appendChild(divSquare);
+        }
+
+
+        playerGameDiv.appendChild(playerBoardDiv);
+        playerGameDiv.appendChild(scoreDiv);
+
+        return playerGameDiv;
     }
 
 }
