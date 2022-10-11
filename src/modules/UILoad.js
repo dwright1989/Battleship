@@ -1,9 +1,13 @@
 
+import { findLastIndex } from 'lodash';
 import Game from '../Game.js';
 import GameBoard from './GameBoard.js';
 
 export default class UILoad{
 
+    /* 
+    Load the initial page where player's enter their name
+    */
     static loadIntroPage(){
         let content = document.getElementById("content");
         let introDiv = document.createElement("div");
@@ -49,6 +53,9 @@ export default class UILoad{
         
     }
 
+    /*
+    Check that the player has entered a name
+    */
     static nameFormValidate(form){
         if(form.playerName.value!=null && form.playerName.value.trim()!=""){
             Game.initialisePlayer(form.playerName.value);
@@ -59,6 +66,9 @@ export default class UILoad{
         }
     }
 
+    /*
+    Load the page for players to select and place their ships
+    */
     static loadShipSelectionPage(player1){
             let introPage = document.getElementById("introPage");
             introPage.remove();
@@ -73,7 +83,7 @@ export default class UILoad{
             let gridDiv = document.createElement("div");
             gridDiv.id = "gridDiv";
             gridDiv.classList.add("fade-in");
-            let gameBoardDiv = UILoad.generateGameBoardDiv(player1);
+            let gameBoardDiv = UILoad.generateShipSelectionDiv(player1);
             let shipsDiv = UILoad.generateShipsDiv(player1.gameBoard.ships);
 
             gridDiv.appendChild(gameBoardDiv);
@@ -84,7 +94,10 @@ export default class UILoad{
             content.appendChild(shipSelectionPage);
     }
 
-    static generateGameBoardDiv(player){
+    /*
+    Load the blank board for players to place their ships
+    */
+    static generateShipSelectionDiv(player){
         let gameBoardDiv = document.createElement("div");
         gameBoardDiv.id = "boardDiv";
         for(let i=0; i<player.gameBoard.board.length; i++){
@@ -179,6 +192,9 @@ export default class UILoad{
         return gameBoardDiv;
     }
 
+    /*
+    Generate the UI for the ships that the player selects from to place at the start of the game
+    */
     static generateShipsDiv(ships){
         let shipsDiv = document.createElement("div");
         shipsDiv.id = "shipsDiv";
@@ -228,6 +244,9 @@ export default class UILoad{
         return shipsDiv;
     }
 
+    /*
+    The ship that the player holds, ready to be placed
+    */
     static updateSelectedShipStyle(ship){
         let ships = Game.player1.gameBoard.ships;
         // make sure all other ships are inactive
@@ -260,6 +279,9 @@ export default class UILoad{
         
     }
 
+    /*
+    Load the game page (player and AI boards)
+    */
     static loadGamePage(){
         Game.initialiseAI();
         let shipSelectionPage = document.getElementById("shipSelectionPage");
@@ -269,8 +291,55 @@ export default class UILoad{
         gamePage.id = "gamePage";
         gamePage.classList.add("fade-in");
 
-        gamePage.textContent = JSON.stringify(Game.player2.gameBoard);
+        let heading = document.createElement("h3");
+        heading.textContent="Battleship";
+        
+        let keyDiv = UILoad.loadKey();
+        /*let playerBoardDiv = UILoad.loadPlayerBoard();
+        let AIBoardDiv = UILoad.loadAIBoard();*/
+        gamePage.appendChild(heading);
+        
+        gamePage.appendChild(keyDiv);
+        /*gamePage.appendChild(playerBoardDiv);
+        gamePage.appendChild(AIBoardDiv);
+        */
         content.appendChild(gamePage);
+    }
+
+    /*
+    Key for Game page shows colours for hit, miss and sunk ships
+    */
+    static loadKey(){
+        let keyDiv = document.createElement("div");
+        keyDiv.id = "keyDiv";
+        
+        let hitSquare = document.createElement("div");
+        hitSquare.classList.add("hit-square");
+        hitSquare.classList.add("ship-square");
+        let hitText = document.createElement("p");
+        hitText.classList.add("key-text");
+        hitText.textContent = "Hit";
+        let shipSunkSquare = document.createElement("div");
+        shipSunkSquare.classList.add("ship-sunk-square");
+        shipSunkSquare.classList.add("ship-square");
+        let shipSunkText = document.createElement("p");
+        shipSunkText.classList.add("key-text");
+        shipSunkText.textContent = "Ship Sunk";
+        let missSquare = document.createElement("div");
+        missSquare.classList.add("miss-square");
+        missSquare.classList.add("ship-square");
+        let missText = document.createElement("p");
+        missText.classList.add("key-text");
+        missText.textContent = "Miss";
+        
+
+        keyDiv.appendChild(hitSquare);
+        keyDiv.appendChild(hitText);
+        keyDiv.appendChild(shipSunkSquare);
+        keyDiv.appendChild(shipSunkText);
+        keyDiv.appendChild(missSquare);
+        keyDiv.appendChild(missText);
+        return keyDiv;
     }
 
 }

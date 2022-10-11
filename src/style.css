@@ -20,6 +20,7 @@ html{
     --colorOne: #00A36C;
     --colorTwo: #CCCCFF;
     --colorThree: #6495ED;
+    --colorFour: red;
 }
 
 body{
@@ -193,4 +194,39 @@ button{
 
 .placed-ship{
     background-color: var(--main-color);
+}
+
+
+/*GAME*/
+#keyDiv{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    width: 50vw;
+    margin: auto;
+    font-size: 1.2vw;
+    color: var(--colorTwo);
+    padding-top: 5rem;
+}
+
+.ship-square{
+    width: 2vw;
+    height: 2vw;
+    border: 1px solid var(--colorTwo);
+}
+
+.hit-square{
+    background-color:var(--colorOne);
+}
+
+.ship-sunk-square{
+    background-color: var(--colorFour);
+}
+
+.miss-square{
+    background-color:var(--secondary-color);
+}
+
+.key-text{
+    margin: auto 0px;
 }
