@@ -25,7 +25,10 @@ export default class Player{
         console.log("player 1 shot: " + this.enemy.gameBoard.receiveAttack(coordinate));
         this.turn = false;
         this.enemy.turn = true;
-        this.enemy.takeRandomShot();
+        let theEnemy = this.enemy;
+        setTimeout(function(){
+            theEnemy.takeRandomShot();
+        },1000);
     }
 
     takeRandomShot(){
