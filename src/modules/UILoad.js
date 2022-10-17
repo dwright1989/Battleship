@@ -369,6 +369,7 @@ export default class UILoad{
         }
         nameDiv.textContent += player.name;
 
+        /* this is the enemies score to show the score of the board*/
         let scoreDiv = document.createElement("div");
         scoreDiv.classList.add("score-div");
         let scoreDivTitle = document.createElement("span");
@@ -376,7 +377,7 @@ export default class UILoad{
         scoreDivTitle.textContent = "Ships sunk: ";
         let scoreDivValue = document.createElement("span");
         scoreDivValue.classList.add("score");
-        scoreDivValue.id = player.name + "Score";
+        scoreDivValue.id = player.enemy.name + "Score";
         scoreDivValue.textContent = 0;
         scoreDiv.appendChild(scoreDivTitle);
         scoreDiv.appendChild(scoreDivValue);
@@ -446,5 +447,35 @@ export default class UILoad{
       messageDiv.innerHTML = player.name + ": <span class='"+result+"'>" + result + "</span>. "  + player.enemy.name + "'s turn.";
 
   }
+
+  /*
+  End of the game, show the winner
+  */
+ static loadWinnerPage(winner){
+    let gamePage = document.getElementById("gamePage");
+    gamePage.remove();
+    let content = document.getElementById("content");
+    let winnerPage = document.createElement("div");
+    winnerPage.id = "winnerPage";
+    winnerPage.classList.add("fade-in");
+
+    let winnerDiv = document.createElement("div");
+    winnerDiv.id = "winnerDiv";
+
+    let winnerText = document.createElement("p");
+    winnerText.id = "winningMessage";
+    winnerText.textContent = winner.name + " is the winner! Play again?";
+
+    let resetButton = document.createElement("button");
+    resetButton.id = "resetButton";
+    resetButton.textContent = "Play Again"
+
+
+    winnerDiv.appendChild(winnerText);
+    winnerDiv.appendChild(resetButton);
+    winnerPage.appendChild(winnerDiv);
+    content.appendChild(winnerPage);
+
+ }
 
 }

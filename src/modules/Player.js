@@ -31,18 +31,21 @@ export default class Player{
             coordinates = ship.position;
             this.score++;
             UILoad.updateScore(this);
-            if(this.score==5){
-                // end game
-            }
+            
         }else{
             coordinates.push(coordinate);
         }
         UILoad.updateSquare(this, coordinates, result);
         UILoad.updateMessage(this, result);
-        let theEnemy = this.enemy;
-        setTimeout(function(){
-            theEnemy.takeRandomShot();
-       },2000);
+        if(this.score==5){
+            Game.end(this);
+        }else{
+            let theEnemy = this.enemy;
+            setTimeout(function(){
+                theEnemy.takeRandomShot();
+            },1000);
+        }
+        
     }
 
     takeRandomShot(){
@@ -60,14 +63,14 @@ export default class Player{
             coordinates = ship.position;
             this.score++;
             UILoad.updateScore(this);
-            if(this.score==5){
-                // end game
-            }
         }else{
             coordinates.push(randomNumber);
         }
         UILoad.updateSquare(this, coordinates, result);
         UILoad.updateMessage(this, result);
+        if(this.score==5){
+            Game.end(this);
+        }
     }
 
     setEnemy(enemy){

@@ -63,6 +63,10 @@ export default class Game{
         return coords;
    }
 
+   static end(winner){
+       UILoad.loadWinnerPage(winner);
+   }
+
 }
 
 /* module.exports = Game; */ // Uncomment for testing

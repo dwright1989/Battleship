@@ -298,3 +298,23 @@ button{
     text-align:center;
     font-size: 1.2vw;
 }
+
+#winnerDiv{
+    display: grid;
+    padding-top: min(20%, 1000px);
+}
+
+#winningMessage{
+    font-size: 6vw;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+#resetButton{
+    width: 10vw;
+    height: 4vw;
+    margin: 0px auto;
+
+    font-size:1.5vw;
+}
