@@ -99,7 +99,7 @@ button{
     color: red;
 }
 
-#startButton{
+#startButton, #resetButton{
     background-color: var(--colorTwo);
     padding: 1rem;
     font-size: 2vw;
@@ -113,7 +113,7 @@ button{
     transition-delay: 0.25s;
 }
 
-#startButton:hover{
+#startButton:hover, #resetButton:hover{
     background-color: var(--main-color);
     color: var(--colorThree);
 }
@@ -263,6 +263,10 @@ button{
 
 #player2GameDiv{
     grid-area: 3/3/4/4;
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 #message{

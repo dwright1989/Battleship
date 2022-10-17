@@ -393,6 +393,7 @@ export default class UILoad{
             if(player.gameBoard.board[i].hasShip!=false){
                 divSquare.classList.add("placed-ship");
             }
+            divSquare.classList.add("pointer");
             playerBoardDiv.appendChild(divSquare);
 
             if(type=="AI"){
@@ -400,6 +401,7 @@ export default class UILoad{
                     if(Game.player1.turn){
                         Game.player1.takeShot(i);
                         divSquare.removeEventListener("click", _listener);
+                        divSquare.classList.remove("pointer");
                     }
                 });
             }
