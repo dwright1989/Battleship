@@ -326,7 +326,9 @@ button{
 /*
 MEDIA QUERIES FOR MOBILE DEVICES 
 */
-@media (max-width:912px)  { 
+
+
+@media only screen and (max-width:3000px){ 
 
     /*INTRO*/
     h1 {
@@ -362,8 +364,8 @@ MEDIA QUERIES FOR MOBILE DEVICES
     }
 
     .ship-segment{
-        min-width: 2rem;
-        min-height: 2rem;
+        min-width: 8vw;
+        min-height: 8vw;
     }
 
     #axisButton{
@@ -399,10 +401,10 @@ MEDIA QUERIES FOR MOBILE DEVICES
     }
 
     .ship-square{
-        width: 1rem;
-        height: 1rem;
-        min-width: 1rem;
-        min-height: 1rem;
+        width: 3vw;
+        height: 3vw;
+        min-width: 3vw;
+        min-height: 3vw;
     }
 
     .player-game-div {
@@ -419,7 +421,7 @@ MEDIA QUERIES FOR MOBILE DEVICES
     }
 
     .score-div {
-        margin-top: 0.3rem;
+        margin-top: 2rem;
         font-size: 3vw;
     }
     #message {
