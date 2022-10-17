@@ -41,6 +41,8 @@ export default class Game{
     */
    static initialiseAI(){
         this.player2 = new Player("Computer", "AI");
+        this.player2.setEnemy(this.player1);
+        this.player1.setEnemy(this.player2);
     }
 
    static generateCoordinates(axis, pos, length){
@@ -62,7 +64,7 @@ export default class Game{
    }
 
    static begin(){
-       
+
    }
 
 

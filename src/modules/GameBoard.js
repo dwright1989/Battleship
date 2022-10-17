@@ -92,20 +92,36 @@ export default class GameBoard{
     Receive an attack in a particular position and update the ship object or missed array
     */
    receiveAttack(coordinate){
+       let result = "";
+       // check if this square has been clicked before
+       if(this.hits.includes(coordinate) || this.missed.includes(coordinate)){
+
+       }
+       else{
         for(let ship in this.ships){
             let positions = this.ships[ship].position;
-        for(let pos in positions){
-                if(positions[pos] == coordinate){
-                    if(!this.hits.includes(coordinate)){
-                        this.ships[ship].hit();
-                        this.hits.push(coordinate);
+            for(let pos in positions){
+                    if(positions[pos] == coordinate){
+                        if(!this.hits.includes(coordinate)){
+                            this.ships[ship].hit();
+                            this.hits.push(coordinate);
+                            /// if it's a hit check if the ship is sunk
+                            if(this.ships[ship].isSunk()){
+                                result = "sunk";
+                            }else{
+                                result ="hit";
+                            }
+                            return result; 
+                        }                                           
                     }
-                    return;                    
-                }
             }
         }
         
         this.missed.push(coordinate); 
+        result = "miss";
+       }
+        
+        return result;
    }
 
    /*

@@ -380,8 +380,10 @@ export default class UILoad{
 
             if(type=="AI"){
                 divSquare.addEventListener("click", function(){
-                    
-                });
+                    if(Game.player1.turn){
+                        Game.player1.takeShot(i);
+                    }
+                },{once:true});
             }
         }
 

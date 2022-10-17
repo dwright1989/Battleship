@@ -22,12 +22,17 @@ export default class Player{
     }
 
     takeShot(coordinate){
-        this.gameboard.enemy.receiveAttack(coordinate);
+        console.log("player 1 shot: " + this.enemy.gameBoard.receiveAttack(coordinate));
+        this.turn = false;
+        this.enemy.turn = true;
+        this.enemy.takeRandomShot();
     }
 
     takeRandomShot(){
         let randomNumber = Math.floor(Math.random()*100);
-        this.enemy.gameBoard.receiveAttack(randomNumber);
+        console.log("player 2 shot: "  + this.enemy.gameBoard.receiveAttack(randomNumber));
+        this.turn = false;
+        this.enemy.turn = true;
     }
 
     setEnemy(enemy){
