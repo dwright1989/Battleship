@@ -356,9 +356,6 @@ export default class UILoad{
         playerGameDiv.classList.add("player-game-div");
         let playerBoardDiv = document.createElement("div");
         playerBoardDiv.classList.add("player-board-div");
-        let scoreDiv = document.createElement("div");
-        scoreDiv.classList.add("score-div");
-        scoreDiv.textContent = "Ships sunk: ";
         let nameDiv = document.createElement("p");
         nameDiv.classList.add("name");
         nameDiv.textContent = "Player: ";
@@ -372,6 +369,18 @@ export default class UILoad{
             playerGameDiv.id="player2GameDiv";
         }
         nameDiv.textContent += player.name;
+
+        let scoreDiv = document.createElement("div");
+        scoreDiv.classList.add("score-div");
+        let scoreDivTitle = document.createElement("span");
+        scoreDivTitle.classList.add("score-title");
+        scoreDivTitle.textContent = "Ships sunk: ";
+        let scoreDivValue = document.createElement("span");
+        scoreDivValue.classList.add("score");
+        scoreDivValue.id = player.name + "Score";
+        scoreDivValue.textContent = 0;
+        scoreDiv.appendChild(scoreDivTitle);
+        scoreDiv.appendChild(scoreDivValue);
 
         for(let i=0; i<player.gameBoard.board.length; i++){
             let divSquare = document.createElement("div");
@@ -418,6 +427,12 @@ export default class UILoad{
             square.classList.add(result+"-square");
         }
       
+   }
+
+
+   static updateScore(player){
+        let scoreDiv = document.getElementById(player.name+"Score");
+        scoreDiv.textContent = player.score;
    }
 
 }

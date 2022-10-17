@@ -23,13 +23,17 @@ export default class Player{
 
     takeShot(coordinate){
         let result = this.enemy.gameBoard.receiveAttack(coordinate);
-        console.log("player 1 shot: " + result);
         this.turn = false;
         this.enemy.turn = true;
         let coordinates = [];
         if(result=="sunk"){
             let ship = this.enemy.getShipByCoordinate(coordinate);
             coordinates = ship.position;
+            this.score++;
+            UILoad.updateScore(this);
+            if(this.score==5){
+                // end game
+            }
         }else{
             coordinates.push(coordinate);
         }
@@ -47,13 +51,17 @@ export default class Player{
             randomNumber = Math.floor(Math.random()*100);
             result = this.enemy.gameBoard.receiveAttack(randomNumber);
         }
-        console.log("player 2 shot: "  + result);
         this.turn = false;
         this.enemy.turn = true;
         let coordinates = [];
         if(result=="sunk"){
             let ship = this.enemy.getShipByCoordinate(randomNumber);
             coordinates = ship.position;
+            this.score++;
+            UILoad.updateScore(this);
+            if(this.score==5){
+                // end game
+            }
         }else{
             coordinates.push(randomNumber);
         }
@@ -90,7 +98,6 @@ export default class Player{
 
     getShipByCoordinate(coordinate){
         let theShips = this.gameBoard.ships;
-        console.log(JSON.stringify(theShips));
         for(let i=0; i<theShips.length; i++){
             let coordinates = theShips[i].position;
             if(coordinates.includes(coordinate)){
