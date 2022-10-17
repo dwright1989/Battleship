@@ -322,3 +322,67 @@ button{
 
     font-size:1.5vw;
 }
+
+/*
+MEDIA QUERIES FOR MOBILE DEVICES 
+*/
+@media (max-width:480px)  { 
+
+    /*INTRO*/
+    h1 {
+        font-size: 15vw;
+    }    
+    #playerNameForm, #startButton{
+        font-size: 8vw;
+    }
+
+    #playerNameInput {
+        width: 60%;
+        font-size: 6vw;
+    }
+
+    /*SHIP SELECTION PAGE*/
+    h3 {
+        font-size: 10vw;
+        padding: 2rem 0rem 0rem 0rem;
+    }
+
+    h5 {
+        font-size: 6vw;
+        padding: 0rem;
+    }
+
+    #gridDiv{
+        grid-template-columns: 1fr;
+    }
+
+    #boardDiv{
+        min-width: 80vw;
+        min-height: 80vw;
+    }
+
+    .ship-segment{
+        min-width: 1rem;
+        min-height: 1rem;
+    }
+
+    #axisButton{
+        font-size: 4vw;
+        width: 60%;
+        grid-area: 1/1/2/3;
+        margin: auto auto 1rem auto;
+    }
+     
+    #shipsDiv{
+        padding: 1rem 2rem;
+    }
+
+    .ship-title {
+        font-size: 4vw;
+        padding-bottom: 0rem;
+    }
+
+    .ship {
+        padding-bottom: 0.5rem;
+    }
+}
