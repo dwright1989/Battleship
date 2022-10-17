@@ -71,7 +71,10 @@ export default class UILoad{
     */
     static loadShipSelectionPage(player1){
             let introPage = document.getElementById("introPage");
-            introPage.remove();
+            if(introPage!=null && introPage!=""){
+                introPage.remove();
+            }
+            
             let content = document.getElementById("content");
             let shipSelectionPage = document.createElement("div");
             shipSelectionPage.id = "shipSelectionPage";
@@ -468,7 +471,15 @@ export default class UILoad{
 
     let resetButton = document.createElement("button");
     resetButton.id = "resetButton";
-    resetButton.textContent = "Play Again"
+    resetButton.textContent = "Play Again";
+
+    resetButton.addEventListener('click', function(event){
+        let name = Game.player1.name;
+        event.preventDefault();
+        winnerPage.remove();
+        Game.reset();
+        Game.initialisePlayer(name);
+    });
 
 
     winnerDiv.appendChild(winnerText);

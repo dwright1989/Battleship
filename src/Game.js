@@ -67,6 +67,11 @@ export default class Game{
        UILoad.loadWinnerPage(winner);
    }
 
+   static reset(){
+    this.player1 = null;
+    this.player2 = null;
+   }
+
 }
 
 /* module.exports = Game; */ // Uncomment for testing
