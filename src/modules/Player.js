@@ -38,10 +38,11 @@ export default class Player{
             coordinates.push(coordinate);
         }
         UILoad.updateSquare(this, coordinates, result);
+        UILoad.updateMessage(this, result);
         let theEnemy = this.enemy;
         setTimeout(function(){
             theEnemy.takeRandomShot();
-       },1000);
+       },2000);
     }
 
     takeRandomShot(){
@@ -66,6 +67,7 @@ export default class Player{
             coordinates.push(randomNumber);
         }
         UILoad.updateSquare(this, coordinates, result);
+        UILoad.updateMessage(this, result);
     }
 
     setEnemy(enemy){

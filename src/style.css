@@ -224,12 +224,24 @@ button{
     background-color:var(--colorOne);
 }
 
+.hit{
+    color: var(--colorOne);
+}
+
 .sunk-square{
     background-color: var(--colorFour);
 }
 
+.sunk{
+    color: var(--colorFour);
+}
+
 .miss-square{
     background-color:var(--secondary-color);
+}
+
+.miss{
+    color: var(--secondary-color);
 }
 
 .key-text{
@@ -259,6 +271,7 @@ button{
     align-self: center;
     text-align: center;
     color: var(--colorTwo);
+    font-size: 2vw;
 }
 
 .player-game-div{

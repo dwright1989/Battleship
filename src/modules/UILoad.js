@@ -438,4 +438,13 @@ export default class UILoad{
         scoreDiv.textContent = player.score;
    }
 
+   /*
+   Change the message so players know the last result
+   */
+  static updateMessage(player, result){
+      let messageDiv = document.getElementById("message");
+      messageDiv.innerHTML = player.name + ": <span class='"+result+"'>" + result + "</span>. "  + player.enemy.name + "'s turn.";
+
+  }
+
 }
