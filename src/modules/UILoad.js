@@ -309,7 +309,6 @@ export default class UILoad{
         gamePage.appendChild(AIBoardDiv);
         
         content.appendChild(gamePage);
-        Game.begin();
     }
 
     /*
@@ -393,11 +392,12 @@ export default class UILoad{
             playerBoardDiv.appendChild(divSquare);
 
             if(type=="AI"){
-                divSquare.addEventListener("click", function(){
+                divSquare.addEventListener("click", function _listener(){
                     if(Game.player1.turn){
                         Game.player1.takeShot(i);
+                        divSquare.removeEventListener("click", _listener);
                     }
-                },{once:true});
+                });
             }
         }
 
@@ -430,6 +430,9 @@ export default class UILoad{
    }
 
 
+   /* 
+   Make sure score is up to date
+   */
    static updateScore(player){
         let scoreDiv = document.getElementById(player.name+"Score");
         scoreDiv.textContent = player.score;

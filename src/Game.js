@@ -63,11 +63,6 @@ export default class Game{
         return coords;
    }
 
-   static begin(){
-
-   }
-
-
 }
 
 /* module.exports = Game; */ // Uncomment for testing

@@ -39,9 +39,9 @@ export default class Player{
         }
         UILoad.updateSquare(this, coordinates, result);
         let theEnemy = this.enemy;
-       // setTimeout(function(){
+        setTimeout(function(){
             theEnemy.takeRandomShot();
-       // },1000);
+       },1000);
     }
 
     takeRandomShot(){

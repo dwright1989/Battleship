@@ -35,6 +35,9 @@ export default class GameBoard{
         this.ships = [carrier, battleship, destroyer, submarine, patrol];
     }
 
+    /*
+    Check if a ship can be placed here due to overlap of board and other ships
+    */
     canPlaceShipHere(firstSquare, ship, axis){
         if(this.board[firstSquare].hasShip==false || this.board[firstSquare].hasShip==null){
             let lastDigit = Number(String(firstSquare).slice(-1));
