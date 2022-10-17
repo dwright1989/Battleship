@@ -58,4 +58,5 @@ export default class Player{
     
 }
 
+module.exports = Player;
 

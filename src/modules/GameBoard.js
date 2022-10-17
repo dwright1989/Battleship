@@ -1,6 +1,4 @@
 import Ship from './Ship';
-import Player from './Player';
-import UILoad from './UILoad';
 
 export default class GameBoard{
 
@@ -69,7 +67,10 @@ export default class GameBoard{
                     }
                     return true;
                 }
+        }else{
+            return false;
         }
+        
     }
 
     /*
@@ -125,3 +126,5 @@ export default class GameBoard{
 
 
 }
+
+module.exports = GameBoard;
