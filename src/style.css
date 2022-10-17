@@ -200,7 +200,7 @@ button{
 /*GAME*/
 #gamePage{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 45% 10% 45%;
 }
 #keyDiv{
     display: flex;
@@ -211,7 +211,7 @@ button{
     font-size: 1.2vw;
     color: var(--colorTwo);
     padding-top: 5rem;
-    grid-area: 2/1/3/3;
+    grid-area: 2/1/3/4;
 }
 
 .ship-square{
@@ -224,7 +224,7 @@ button{
     background-color:var(--colorOne);
 }
 
-.ship-sunk-square{
+.sunk-square{
     background-color: var(--colorFour);
 }
 
@@ -242,7 +242,7 @@ button{
     color: var(--colorTwo);
 }
 .game-heading{
-    grid-area: 1/1/2/3;
+    grid-area: 1/1/2/4;
 }
 
 #player1GameDiv{
@@ -250,7 +250,15 @@ button{
 }
 
 #player2GameDiv{
+    grid-area: 3/3/4/4;
+}
+
+#message{
     grid-area: 3/2/4/3;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    color: var(--colorTwo);
 }
 
 .player-game-div{

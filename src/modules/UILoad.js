@@ -297,11 +297,15 @@ export default class UILoad{
 
         let keyDiv = UILoad.loadKey();
         let playerBoardDiv = UILoad.loadPlayerBoard("Human");
+        let messageDiv = document.createElement("div");
+        messageDiv.id = "message";
+        messageDiv.textContent="Let's begin!";
         let AIBoardDiv = UILoad.loadPlayerBoard("AI");
         gamePage.appendChild(heading);
         
         gamePage.appendChild(keyDiv);
         gamePage.appendChild(playerBoardDiv);
+        gamePage.appendChild(messageDiv);
         gamePage.appendChild(AIBoardDiv);
         
         content.appendChild(gamePage);
@@ -322,7 +326,7 @@ export default class UILoad{
         hitText.classList.add("key-text");
         hitText.textContent = "Hit";
         let shipSunkSquare = document.createElement("div");
-        shipSunkSquare.classList.add("ship-sunk-square");
+        shipSunkSquare.classList.add("sunk-square");
         shipSunkSquare.classList.add("ship-square");
         let shipSunkText = document.createElement("p");
         shipSunkText.classList.add("key-text");
@@ -373,6 +377,7 @@ export default class UILoad{
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
+            divSquare.classList.add(player.name);
             if(player.gameBoard.board[i].hasShip!=false){
                 divSquare.classList.add("placed-ship");
             }
@@ -394,5 +399,25 @@ export default class UILoad{
 
         return playerGameDiv;
     }
+
+    /*
+    Update square - hit, miss or sunk.  
+    Array of coordinates passed in case the ship has been sunk
+    Player object passed is the one who is making the shot (not receiving)
+    */
+   static updateSquare(player, pos, result){
+    let playerSquares = document.getElementsByClassName(player.enemy.name);
+        for(let i=0; i<pos.length; i++){
+            let square = null;
+            for(let j=0; j<playerSquares.length; j++){
+                if(playerSquares[j].id==("divSquare"+pos[i])){
+                     square = playerSquares[j];
+                     break;
+                }
+            }
+            square.classList.add(result+"-square");
+        }
+      
+   }
 
 }

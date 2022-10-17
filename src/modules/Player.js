@@ -1,5 +1,6 @@
 import Game from "../Game";
 import GameBoard from "./GameBoard";
+import UILoad from "./UILoad";
 
 export default class Player{
 
@@ -7,7 +8,6 @@ export default class Player{
         this.name = name;
         this.type = type;
         this.gameBoard = new GameBoard();
-        this.ships = [];
         this.enemy = null;
         if(type=="AI"){
             this.generateRandomBoard();
@@ -22,20 +22,31 @@ export default class Player{
     }
 
     takeShot(coordinate){
-        console.log("player 1 shot: " + this.enemy.gameBoard.receiveAttack(coordinate));
+        let result = this.enemy.gameBoard.receiveAttack(coordinate);
+        console.log("player 1 shot: " + result);
         this.turn = false;
         this.enemy.turn = true;
+        let coordinates = [];
+        if(result=="sunk"){
+            let ship = this.enemy.getShipByCoordinate(coordinate);
+            coordinates = ship.position;
+        }else{
+            coordinates.push(coordinate);
+        }
+        UILoad.updateSquare(this, coordinates, result);
         let theEnemy = this.enemy;
-        setTimeout(function(){
+       // setTimeout(function(){
             theEnemy.takeRandomShot();
-        },1000);
+       // },1000);
     }
 
     takeRandomShot(){
         let randomNumber = Math.floor(Math.random()*100);
-        console.log("player 2 shot: "  + this.enemy.gameBoard.receiveAttack(randomNumber));
+        let result = this.enemy.gameBoard.receiveAttack(randomNumber);
+        console.log("player 2 shot: "  + result);
         this.turn = false;
         this.enemy.turn = true;
+        UILoad.updateSquare(this, randomNumber, result);
     }
 
     setEnemy(enemy){
@@ -62,6 +73,17 @@ export default class Player{
                 this.gameBoard.placeShip(theShips[i], coords);
             }else{
                 console.log("ERROR!!");
+            }
+        }
+    }
+
+    getShipByCoordinate(coordinate){
+        let theShips = this.gameBoard.ships;
+        console.log(JSON.stringify(theShips));
+        for(let i=0; i<theShips.length; i++){
+            let coordinates = theShips[i].position;
+            if(coordinates.includes(coordinate)){
+                return theShips[i];
             }
         }
     }
