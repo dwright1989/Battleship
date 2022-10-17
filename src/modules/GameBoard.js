@@ -127,4 +127,7 @@ export default class GameBoard{
 
 }
 
+
+/* 
 module.exports = GameBoard;
+*/ // Uncomment for testing

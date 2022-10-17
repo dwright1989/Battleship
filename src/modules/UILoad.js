@@ -305,6 +305,7 @@ export default class UILoad{
         gamePage.appendChild(AIBoardDiv);
         
         content.appendChild(gamePage);
+        Game.begin();
     }
 
     /*
@@ -367,7 +368,7 @@ export default class UILoad{
             playerGameDiv.id="player2GameDiv";
         }
         nameDiv.textContent += player.name;
-s
+
         for(let i=0; i<player.gameBoard.board.length; i++){
             let divSquare = document.createElement("div");
             divSquare.classList.add("board-square");

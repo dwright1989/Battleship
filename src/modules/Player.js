@@ -2,9 +2,6 @@ import Game from "../Game";
 import GameBoard from "./GameBoard";
 
 export default class Player{
-    name = "";
-    score = 0;
-    type = "Human"; // Human or AI
 
     constructor(name, type){
         this.name = name;
@@ -15,6 +12,13 @@ export default class Player{
         if(type=="AI"){
             this.generateRandomBoard();
         }
+        this.score = 0;
+        if(type=="Human"){
+            this.turn = true;
+        }else{
+            this.turn = false;
+        }
+
     }
 
     takeShot(coordinate){
@@ -58,5 +62,6 @@ export default class Player{
     
 }
 
-module.exports = Player;
+/* module.exports = Player; */ // Uncomment for testing
+
 
