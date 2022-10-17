@@ -390,7 +390,7 @@ export default class UILoad{
             divSquare.classList.add("board-square");
             divSquare.id="divSquare"+i;
             divSquare.classList.add(player.name);
-            if(player.gameBoard.board[i].hasShip!=false){
+            if(player.gameBoard.board[i].hasShip!=false && type=="Human"){
                 divSquare.classList.add("placed-ship");
             }
             divSquare.classList.add("pointer");
