@@ -353,7 +353,7 @@ MEDIA QUERIES FOR MOBILE DEVICES
     }
 
     #gridDiv{
-        grid-template-columns: 1fr;
+        display:block;
     }
 
     #boardDiv{
@@ -362,19 +362,20 @@ MEDIA QUERIES FOR MOBILE DEVICES
     }
 
     .ship-segment{
-        min-width: 1rem;
-        min-height: 1rem;
+        min-width: 2rem;
+        min-height: 2rem;
     }
 
     #axisButton{
         font-size: 4vw;
-        width: 60%;
+        width: 40%;
         grid-area: 1/1/2/3;
         margin: auto auto 1rem auto;
     }
      
     #shipsDiv{
-        padding: 1rem 2rem;
+        padding: 1rem 0rem 0rem 0rem;
+        gap: 1rem;
     }
 
     .ship-title {
@@ -384,5 +385,57 @@ MEDIA QUERIES FOR MOBILE DEVICES
 
     .ship {
         padding-bottom: 0.5rem;
+    }
+
+    /*GAME PAGE*/
+    #gamePage{
+        display: block;
+    }
+    #keyDiv {
+        padding-top: 0.5rem;
+        font-size: 3vw;
+        gap: 1rem;
+        width:100%;
+    }
+
+    .ship-square{
+        width: 1rem;
+        height: 1rem;
+        min-width: 1rem;
+        min-height: 1rem;
+    }
+
+    .player-game-div {
+        margin-top: 1rem;
+    }
+
+    .name {
+        font-size: 4vw;
+    }
+
+    .player-board-div {
+        width: 70vw;
+        height: 70vw;
+    }
+
+    .score-div {
+        margin-top: 0.3rem;
+        font-size: 3vw;
+    }
+    #message {
+        font-size: 4vw;
+        padding-top: 1rem;
+    }
+
+    /*WINNER PAGE*/
+    #winningMessage {
+        font-size: 12vw;
+    }
+
+    #resetButton {
+        width: 60%;
+        height: 60%;
+        margin: 2rem auto 2rem auto;
+        font-size: 8vw;
     }
 }
