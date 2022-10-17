@@ -95,7 +95,6 @@ export default class GameBoard{
        let result = "";
        // check if this square has been clicked before
        if(this.hits.includes(coordinate) || this.missed.includes(coordinate)){
-
        }
        else{
         for(let ship in this.ships){

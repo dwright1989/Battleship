@@ -41,12 +41,23 @@ export default class Player{
     }
 
     takeRandomShot(){
-        let randomNumber = Math.floor(Math.random()*100);
-        let result = this.enemy.gameBoard.receiveAttack(randomNumber);
+        let result = "";
+        let randomNumber = 0;
+        while(result==""){
+            randomNumber = Math.floor(Math.random()*100);
+            result = this.enemy.gameBoard.receiveAttack(randomNumber);
+        }
         console.log("player 2 shot: "  + result);
         this.turn = false;
         this.enemy.turn = true;
-        UILoad.updateSquare(this, randomNumber, result);
+        let coordinates = [];
+        if(result=="sunk"){
+            let ship = this.enemy.getShipByCoordinate(randomNumber);
+            coordinates = ship.position;
+        }else{
+            coordinates.push(randomNumber);
+        }
+        UILoad.updateSquare(this, coordinates, result);
     }
 
     setEnemy(enemy){
