@@ -328,7 +328,7 @@ MEDIA QUERIES FOR MOBILE DEVICES
 */
 
 
-@media only screen and (max-width:3000px){ 
+@media only screen and (max-width:600px){ 
 
     /*INTRO*/
     h1 {
